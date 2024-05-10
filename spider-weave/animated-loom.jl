@@ -49,22 +49,29 @@ function animated_loom(θ, a, b)
 	YL0 = sin.(θ)
 	XL1, YL1 = prime_points(θ, a=a, b=b)
 	all_line_segments = []
-	all_plots = []
 	for (x0, y0, x1, y1) in zip(XL0, YL0, XL1, YL1)
 		push!(all_line_segments, line_segment(x0, y0, x1, y1))
-		all_plot_segments = vcat(all_line_segments...)
-		push!(all_plots,
-			plot(all_plot_segments[:,1], all_plot_segments[:,2], 
-			title="Loom for a=$a, b=$b", label="", aspect_ratio=:equal))
 	end
-	animated_loom = @animate for p ∈ all_plots
-		p
+	all_plot_segments = vcat(all_line_segments...)
+	animated_loom = @animate for n_seg in 1:length(θ)
+		array_segments = 3*n_seg
+		plot(all_plot_segments[begin:array_segments,1], 		all_plot_segments[begin:array_segments,2], 
+			label="", aspect_ratio=:equal,
+		xrange=(-1.2,1.2), yrange=(-1.2,1.2),)
 	end
-	gif(animated_loom, "loom_$(a)_$(b).gif", fps = 15)
+	gif(animated_loom, "loom_$(a)_$(b).gif", fps = 30)
+	all_plot_segments
 end
 
 # ╔═╡ 05e57c17-e23c-471b-80bc-9e6238e89805
-animated_loom(θ, 2, 2)
+segs=animated_loom(θ, 6, 6)
+
+# ╔═╡ a2ac425f-2aae-48c7-bcc7-d16c7b3456c1
+@gif for p in 1:length(θ)
+	seg_max = 3*p
+	plot(segs[1:seg_max,1], segs[1:seg_max,2], xrange=(-1.2,1.2), yrange=(-1.2,1.2),
+			label="", aspect_ratio=:equal)
+end
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -1137,5 +1144,6 @@ version = "1.4.1+1"
 # ╠═c677b658-9995-468e-a6da-98656874bf4b
 # ╠═c4745476-6f11-46aa-8e15-f3be95345e2c
 # ╠═05e57c17-e23c-471b-80bc-9e6238e89805
+# ╠═a2ac425f-2aae-48c7-bcc7-d16c7b3456c1
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
