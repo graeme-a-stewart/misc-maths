@@ -82,7 +82,7 @@ function loom(θ, a, b)
 	end
 	all_plot_segments = vcat(all_line_segments...)
 	plot(all_plot_segments[:,1], all_plot_segments[:,2], 
-		title="Loom for a=$a, b=$b", label="")
+		title="Loom for a=$a, b=$b", label="", aspect_ratio=:equal)
 end
 
 # ╔═╡ 7283ea68-1f36-47bd-bbc3-d52d5a2785ea
@@ -90,6 +90,9 @@ loom(θ, 6, 6)
 
 # ╔═╡ bdb6da1f-dd0b-429e-882a-3f9e29b15220
 loom(θ, 2, 3)
+
+# ╔═╡ f82c9657-a270-4635-a63d-51cbccfda080
+loom(θ, 2, sqrt(5))
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -1170,5 +1173,6 @@ version = "1.4.1+1"
 # ╠═027836f8-8a02-46f2-841e-ff6bf51b0dc0
 # ╠═7283ea68-1f36-47bd-bbc3-d52d5a2785ea
 # ╠═bdb6da1f-dd0b-429e-882a-3f9e29b15220
+# ╠═f82c9657-a270-4635-a63d-51cbccfda080
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
