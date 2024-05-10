@@ -60,18 +60,10 @@ function animated_loom(θ, a, b)
 		xrange=(-1.2,1.2), yrange=(-1.2,1.2),)
 	end
 	gif(animated_loom, "loom_$(a)_$(b).gif", fps = 30)
-	all_plot_segments
 end
 
 # ╔═╡ 05e57c17-e23c-471b-80bc-9e6238e89805
-segs=animated_loom(θ, 6, 6)
-
-# ╔═╡ a2ac425f-2aae-48c7-bcc7-d16c7b3456c1
-@gif for p in 1:length(θ)
-	seg_max = 3*p
-	plot(segs[1:seg_max,1], segs[1:seg_max,2], xrange=(-1.2,1.2), yrange=(-1.2,1.2),
-			label="", aspect_ratio=:equal)
-end
+animated_loom(θ, 6, 6)
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -1144,6 +1136,5 @@ version = "1.4.1+1"
 # ╠═c677b658-9995-468e-a6da-98656874bf4b
 # ╠═c4745476-6f11-46aa-8e15-f3be95345e2c
 # ╠═05e57c17-e23c-471b-80bc-9e6238e89805
-# ╠═a2ac425f-2aae-48c7-bcc7-d16c7b3456c1
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
